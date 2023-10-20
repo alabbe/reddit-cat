@@ -11,7 +11,7 @@ function App() {
             <div className='grid grid-cols-6 px-2 w-full items-center'>
               <div className='col-span-4 inline-flex items-center gap-3'>
                 <div className='rounded-full w-8 h-8 bg-teal-500 flex justify-center items-center overflow-clip'>
-                  <img src='../public/cat.png' className='w-7 h-7'></img>
+                  <img src='cat.png' className='w-7 h-7'></img>
                 </div>
                 <div>
                   <span className="text-pink-400 text-2xl lg:text-3xl font-semibold font-['Inter']">Reddit</span>
