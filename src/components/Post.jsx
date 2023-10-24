@@ -25,26 +25,26 @@ const getTimeAgo = (date) => {
     var interval = secondsDiff / 31536000;
 
     if (interval > 1) {
-        return Math.floor(interval) + " years ago";
+        return Math.floor(interval) + " y ago";
     }
     interval = secondsDiff / 2592000;
     if (interval > 1) {
-        return Math.floor(interval) + " months ago";
+        return Math.floor(interval) + " mo ago";
     }
     interval = secondsDiff / 86400;
     if (interval > 1) {
-        return Math.floor(interval) + " days ago";
+        return Math.floor(interval) + " d ago";
     }
     interval = secondsDiff / 3600;
     if (interval > 1) {
-        return Math.floor(interval) + " hours ago";
+        return Math.floor(interval) + " h ago";
     }
     interval = secondsDiff / 60;
     if (interval > 1) {
-        return Math.floor(interval) + " minutes ago";
+        return Math.floor(interval) + " min ago";
     }
     if (secondsDiff < 10) return 'just now';
-    return Math.floor(secondsDiff) + " seconds ago";
+    return Math.floor(secondsDiff) + " sec ago";
 }
 
 const formatVotesCounter = (votesCounter) => {

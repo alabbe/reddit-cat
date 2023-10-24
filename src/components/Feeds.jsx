@@ -9,18 +9,22 @@ const getPost = (listing) => {
 
 function Feeds(props) {
 
-    // recuperer les posts non video / non gallery dans le listing
-    let imagesPostsList = props.posts.data.children.filter((post) => {
-        if (!post.data.is_video & !post.data.is_gallery) {
-            return post;
-        }
-    });
-    console.log("listing", imagesPostsList);
+    let feeds = "";
+    if (props.posts) {
+        console.log("props from Feeds", props.posts);
+        // recuperer les posts non video / non gallery dans le listing
+        let imagesPostsList = props.posts.filter((post) => {
+            if (!post.is_video & !post.is_gallery) {
+                return post;
+            }
+        });
+        console.log("listing", imagesPostsList);
 
-    let feeds = imagesPostsList.map((post) => <Post key={post.data.id} data={post.data} />);
-    console.log("feeds: ", feeds);
-    // extraire du listing un post
-    //let postData = getPost(props.posts.data.children);
+        feeds = imagesPostsList.map((post) => <Post key={post.id} data={post} />);
+        console.log("feeds: ", feeds);
+        // extraire du listing un post
+        //let postData = getPost(props.posts.data.children);
+    }
 
     return (
         //<Post data={postData} />
