@@ -49,7 +49,6 @@ const getTimeAgo = (date) => {
 
 const formatVotesCounter = (votesCounter) => {
     let ratio = votesCounter / 1000000;
-    console.log("ratio: ", ratio);
     if (ratio > 1 ) {
         return (Math.round((ratio + Number.EPSILON) * 100) / 100) + "M";
     }
@@ -63,7 +62,7 @@ const formatVotesCounter = (votesCounter) => {
 
 function Post(props) {
 
-    let post = props.data.data;
+    let post = props.data;
     console.log("display current post: ", post);
 
     // recuperer la date du post pour afficher la diff
@@ -79,6 +78,7 @@ function Post(props) {
 
     // recuperer le contenu - texte et/ou image seulement
     let imageUrl = post.url;
+    let text = post.selftext;
 
     // recuperer nb de votes
     let votesCounter = post.ups;
@@ -102,6 +102,9 @@ function Post(props) {
                 </div>
                 <div className="col-span-6">
                     <span className=" text-pink-400 text-base lg:text-lg font-bold">{title}</span>
+                </div>
+                <div className="col-span-6">
+                    <span className=" text-pink-400 text-base lg:text-lg">{text}</span>
                 </div>
                 <div id="media-container" className="col-span-6 bg-white">
                    <img src={imageUrl} />

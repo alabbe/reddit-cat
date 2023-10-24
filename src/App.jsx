@@ -17,7 +17,7 @@ function App() {
           <Header />
         </div>
 
-        <div id="feeds" className='flex flex-col gap-y-10 lg:gap-y-14'>
+        <div id="feeds" className='flex flex-col gap-y-10 lg:gap-y-14 pb-20'>
 
           <Feeds posts={data} />
 
