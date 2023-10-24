@@ -14,7 +14,7 @@ function Feeds(props) {
         console.log("props from Feeds", props.posts);
         // recuperer les posts non video / non gallery dans le listing
         let imagesPostsList = props.posts.filter((post) => {
-            if (!post.is_video & !post.is_gallery) {
+            if (!post.is_video & !post.is_gallery & !post.is_self) {
                 return post;
             }
         });
