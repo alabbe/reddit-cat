@@ -86,7 +86,7 @@ function Post(props) {
     let commentsNb = post.num_comments;
 
     return (
-        <div id="post" className='bg-yellow-200 w-[280px] rounded-lg lg:w-[650px] lg:h-[450px] p-2'>
+        <div id="post" className='bg-yellow-200 w-[280px] rounded-lg lg:w-[650px] p-2'>
             <div className="grid grid-cols-6 w-full items-center gap-2">
                 <div className="col-span-4">
                     <div id="author" className="flex justify-start items-center gap-2">
@@ -102,7 +102,7 @@ function Post(props) {
                 <div className="col-span-6">
                     <span className=" text-pink-400 text-base lg:text-lg font-bold">{title}</span>
                 </div>
-                <div id="media-container" className="col-span-6 h-[320px] bg-white overflow-hidden">
+                <div id="media-container" className="col-span-6 bg-white">
                    <img src={imageUrl} />
                 </div>
                 <div className="col-span-3">
