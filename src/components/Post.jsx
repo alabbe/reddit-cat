@@ -73,6 +73,9 @@ function Post(props) {
     let username = getUserDisplayName(USER);
     let userIconUrl = getUserIconUrl(USER);
 
+    //recuperer le subreddit
+    let subreddit = post.subreddit_name_prefixed;
+
     // recuperer le titre
     let title = post.title;
 
@@ -88,16 +91,19 @@ function Post(props) {
 
     return (
         <div id="post" className='bg-yellow-200 w-[280px] rounded-lg lg:w-[650px] p-2'>
-            <div className="grid grid-cols-6 w-full items-center gap-2">
+            <div className="grid grid-cols-6 w-full gap-2">
                 <div className="col-span-4">
                     <div id="author" className="flex justify-start items-center gap-2">
                         <div className="rounded-full w-6 h-6 bg-zinc-300 flex justify-center items-center overflow-clip">
                             <img src={userIconUrl} className=""/>
                         </div>
-                        <span className="text-pink-400 text-base lg:text-lg font-normal">{username}</span>
+                        <div className="flex flex-col">
+                        <span className="text-pink-400 text-xs lg:text-lg font-normal">{username}</span>
+                        <span className=" text-pink-400 text-xs lg:text-base rounded-lg bg-white w-fit px-2">{subreddit}</span>
+                        </div>
                     </div>
                 </div>
-                <div className="col-span-2 place-self-end">
+                <div className="col-span-2 justify-self-end">
                     <span className="text-pink-400 text-xs lg:text-lg font-light">{timeAgo}</span>
                 </div>
                 <div className="col-span-6">
