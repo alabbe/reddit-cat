@@ -49,12 +49,13 @@ const getTimeAgo = (date) => {
 
 const formatVotesCounter = (votesCounter) => {
     let ratio = votesCounter / 1000000;
+    console.log("ratio: ", ratio);
     if (ratio > 1 ) {
-        return Math.floor(ratio) + "M";
+        return (Math.round((ratio + Number.EPSILON) * 100) / 100) + "M";
     }
     ratio = votesCounter / 1000;
     if (ratio > 1 ) {
-        return Math.floor(ratio) + "k";
+        return (Math.round((ratio + Number.EPSILON) * 10) / 10) + "k";
     }
     return votesCounter;
 }
