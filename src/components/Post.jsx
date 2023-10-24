@@ -106,7 +106,7 @@ function Post(props) {
                 <div className="col-span-6">
                     <span className=" text-pink-400 text-base lg:text-lg">{text}</span>
                 </div>
-                <div id="media-container" className="col-span-6 bg-white">
+                <div id="media-container" className="col-span-6 place-self-center">
                    <img src={imageUrl} />
                 </div>
                 <div className="col-span-3">
