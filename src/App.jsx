@@ -1,38 +1,94 @@
 import React, { useEffect, useState } from "react";
+import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route } from "react-router-dom"
 
-import { mockData } from "./tests/data";
-import Header from "./components/Header";
+
+import { Home } from "./pages/Home";
 import Feeds from "./components/Feeds";
-import { Reddit } from "./util/Reddit";
+import { FILTERS_TYPE, Reddit } from "./util/Reddit";
 
 function App() {
 
   const [data, setData] = useState(null);
 
+  const isImageOnlyPost = (post) => {
+    if (!post.data.is_video & !post.data.is_gallery & !post.data.is_self) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   // recuperer les données sur reddit pour initialiser la home
   useEffect(() => {
-    let promise = Reddit.getFeed();
-    let feed = [];
-    promise.then((json) => {
-      if (json.data) {
-        feed = json.data.children.map((post) => post.data);
+
+    Reddit.getFeed(FILTERS_TYPE.default).then((json) => {
+      let feed = [];
+      if (json) {
+        feed = json.data.children.filter(isImageOnlyPost);
       }
       setData([...feed]);
-    });
+      return feed;
+    })
   }, []);
 
+  const showBest = () => {
+    Reddit.getFeed(FILTERS_TYPE.best).then((json) => {
+      let feed = [];
+      if (json) {
+        feed = json.data.children.filter(isImageOnlyPost);
+      }
+      setData([...feed]);
+      return feed;
+    })
+  }
+
+  const showHot = () => {
+    Reddit.getFeed(FILTERS_TYPE.hot).then((json) => {
+      let feed = [];
+      if (json) {
+        feed = json.data.children.filter(isImageOnlyPost);
+      }
+      setData([...feed]);
+      return feed;
+    })
+  }
+
+  const showNew = () => {
+    Reddit.getFeed(FILTERS_TYPE.new).then((json) => {
+      let feed = [];
+      if (json) {
+        feed = json.data.children.filter(isImageOnlyPost);
+      }
+      setData([...feed]);
+      return feed;
+    })
+  }
+
+  const showTop = () => {
+    Reddit.getFeed(FILTERS_TYPE.top).then((json) => {
+      let feed = [];
+      if (json) {
+        feed = json.data.children.filter(isImageOnlyPost);
+      }
+      setData([...feed]);
+      return feed;
+    })
+  }
+
+  const router = createBrowserRouter(createRoutesFromElements(
+    <Route path="/" element={ <Home showBest={showBest} showHot={showHot} showNew={showNew} showTop={showTop} /> }>
+      <Route index element={  <Feeds posts={data} /> } />
+      <Route path="/best" element={  <Feeds posts={data} /> } />
+      <Route path="/hot" element={  <Feeds posts={data} /> }/>
+      <Route path="/new" element={  <Feeds posts={data} /> }/>
+      <Route path="/top" element={  <Feeds posts={data} /> }/>
+     </Route>
+  ));
+  
   return (
-    <>
-      <div className='bg-white flex flex-col justify-start items-center gap-10 lg:gap-20 w-full'>
-        <div className='h-[70px]'>
-          <Header />
-        </div>
-        <div id="feeds" className='flex flex-col gap-y-10 lg:gap-y-14 pb-20'>
-          <Feeds posts={data} />
-        </div>
-      </div>
-    </>
-  )
+    <RouterProvider router={router}/>
+  );
+
 }
 
 export default App

@@ -7,23 +7,15 @@ const getPost = (listing) => {
     return post[0];
 }
 
+const getUserPost = (post, users) => {
+    return users.filter((user) => user.id === post.id);
+}
+
 function Feeds(props) {
 
     let feeds = "";
     if (props.posts) {
-        console.log("props from Feeds", props.posts);
-        // recuperer les posts non video / non gallery dans le listing
-        let imagesPostsList = props.posts.filter((post) => {
-            if (!post.is_video & !post.is_gallery & !post.is_self) {
-                return post;
-            }
-        });
-        console.log("listing", imagesPostsList);
-
-        feeds = imagesPostsList.map((post) => <Post key={post.id} data={post} />);
-        console.log("feeds: ", feeds);
-        // extraire du listing un post
-        //let postData = getPost(props.posts.data.children);
+        feeds = props.posts.map((post) => <Post key={post.data.id} data={post.data} />);
     }
 
     return (

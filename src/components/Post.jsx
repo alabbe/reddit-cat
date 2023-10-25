@@ -70,7 +70,8 @@ function Post(props) {
     let timeAgo = getTimeAgo(postCreatedDate);
 
     // recuperer le user et son avatar
-    let username = getUserDisplayName(USER);
+    //let username = getUserDisplayName(USER);
+    let username = `u/${post.author}`;
     let userIconUrl = getUserIconUrl(USER);
 
     //recuperer le subreddit
