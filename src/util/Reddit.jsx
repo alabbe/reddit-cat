@@ -7,7 +7,7 @@
 
 export const FILTERS_TYPE = {
     default: "new",
-    best: "best",
+    best: "rising",
     hot: "hot",
     new: "new",
     top: "top"
