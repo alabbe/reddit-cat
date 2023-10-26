@@ -10,6 +10,8 @@ function App() {
 
   const [data, setData] = useState(null);
 
+  
+
   const isImageOnlyPost = (post) => {
     if (!post.data.is_video & !post.data.is_gallery & !post.data.is_self) {
       return true;
@@ -75,18 +77,20 @@ function App() {
     })
   }
 
+  const feedComponent = <Feeds posts={data} />;
+
   const router = createBrowserRouter(createRoutesFromElements(
-    <Route path="/" element={ <Home showBest={showBest} showHot={showHot} showNew={showNew} showTop={showTop} /> }>
-      <Route index element={  <Feeds posts={data} /> } />
-      <Route path="/best" element={  <Feeds posts={data} /> } />
-      <Route path="/hot" element={  <Feeds posts={data} /> }/>
-      <Route path="/new" element={  <Feeds posts={data} /> }/>
-      <Route path="/top" element={  <Feeds posts={data} /> }/>
-     </Route>
+    <Route path="/" element={<Home showBest={showBest} showHot={showHot} showNew={showNew} showTop={showTop} />}>
+      <Route index element={feedComponent} />
+      <Route path="/best" element={feedComponent} />
+      <Route path="/hot" element={feedComponent} />
+      <Route path="/new" element={feedComponent} />
+      <Route path="/top" element={feedComponent} />
+    </Route>
   ));
-  
+
   return (
-    <RouterProvider router={router}/>
+    <RouterProvider router={router} />
   );
 
 }
